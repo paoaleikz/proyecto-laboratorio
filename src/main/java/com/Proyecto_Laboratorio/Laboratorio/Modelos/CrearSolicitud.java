@@ -10,6 +10,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class CrearSolicitud {
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     @Column(name ="No_Solicitud")
     private long No_Solicitud;

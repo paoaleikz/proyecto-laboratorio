@@ -16,13 +16,12 @@ public class CrearSolicitudDaoImp  implements CrearSolicitudDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Override
-    public List<CrearSolicitud> getsolicitud(){
+      public List<CrearSolicitud> getsolicitud(){
         String query ="FROM CrearSolicitud";
         return entityManager.createQuery(query).getResultList();
     }
 
-    @Override
+
     public List<CrearSolicitud> getCrearSolicitud() {
         return null;
     }

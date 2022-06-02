@@ -17,7 +17,9 @@ public class ConsultaSolicitudControlador {
     private CrearSolicitudDao crearsolicitudDao;
 
     @RequestMapping(value = "solicitud")
-    public List<CrearSolicitud> getCrearSolicitud() { return CrearSolicitudDao.getsolicitud();
+    public List<CrearSolicitud> getCrearSolicitud() {
+        //return CrearSolicitudDao.getsolicitud();
+    return null;
     }
 
 }
