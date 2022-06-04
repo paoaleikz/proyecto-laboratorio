@@ -6,75 +6,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Register - SB Admin</title>
-    <link href="../../css/styles.css" rel="stylesheet" />
+    <title>Consulta de solicitud </title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<body class="bg-primary">
-<div id="layoutAuthentication">
-    <div id="layoutAuthentication_content">
-        <main>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-7">
-                        <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Consulta de Solicitudes </h3></div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <div class="form-floating mb-3 mb-md-0">
-                                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                                                <label for="inputFirstName">Tipo Solicitante</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating">
-                                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                                                <label for="inputLastName">Tipo Solicitud</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                        <label for="inputEmail">Descripcion</label>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <div class="form-floating mb-3 mb-md-0">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                                                <label for="inputPassword">NO. solicitud</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-4 mb-0">
-                                        <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Crear solicitud</a></div>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">Laboratorio Medico La Bendicion</a>
+        <!-- Sidebar Toggle-->
+        <!-- Navbar-->
+    </nav>
+    <div id="layoutSidenav">
+        <!-- MENU IZQUIERDO  -->
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Clasificacion </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Mantenimiento
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                    Solicitudes
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="CrearSolicitud">Crear solicitud</a>
+                                        <a class="nav-link" href="ConsultaSolicitudes">Consulta de solicitudes</a>
+                                    </nav>
+                                </div>
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth2" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                    Muestras
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="CreacionMuestras.html">Crear muestras</a>
+                                        <a class="nav-link" href="ConsultaSolicitudesMuestras.html">Consulta de solicitudes de muestras</a>
+                                    </nav>
+                                </div>
 
+                            </nav>
+                        </div>
 
-                                </form>
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1  th:text="${Titulo}" class="mt-4"></h1>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <i class="fas fa-table me-1"></i>
+
+                                    </div>
+                                    <div class="col-6" style="text-align: right">
+                                        <h6 class="m-0 font-weight-bold text-primary">Crear Solicitud
+                                            <a href="CrearSolicitud" class="btn btn-success btn-circle">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </h6>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple">
+                                <thead>
+                                <tr>
+                                    <th>no_solicitud</th>
+                                    <th>Descripcion</th>
+                                    <th>no_expediente</th>
+                                    <th>Gmail</th>
+                                    <th>tel</th>
+                                    <th>id_tiposolicitud</th>
+                                    <th>id_tiposolicitante</th>
+                                    <th>id_tiposoporte</th>
+                                    <th>Fecha_creacion</th>
+                                    <th>Fecha_modificacion</th>
+                                </tr>
+                                </thead>
+                                <tr th:each="sol: ${lstSolicitudes}">
+                                    <td th:text="${sol.NoSolicitud}"></td>
+                                    <td th:text="${sol.Descripcion}"> </td>
+                                    <td th:text="${sol.NoExpediente}"></td>
+                                    <td th:text="${sol.Gmail}"> </td>
+                                    <td th:text="${sol.Tel}"></td>
+                                    <td th:text="${sol.IdTiposolicitud}"></td>
+                                    <td th:text="${sol.IdTiposolicitante}"> </td>
+                                    <td th:text="${sol.IdTipoSoporte}"></td>
+                                    <td th:text="${sol.Fechacreacion}"> </td>
+                                    <td th:text="${sol.Fechamodificacion}"></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
-    </div>
-    <div id="layoutAuthentication_footer">
-        <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid px-4">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="../../js/scripts.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+     <script src="../js/scripts.js"></script>
+     <script src="../js/datatables-simple-demo.js"></script>
 </body>
 </html>
