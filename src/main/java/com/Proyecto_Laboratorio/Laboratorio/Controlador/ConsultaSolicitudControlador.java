@@ -18,22 +18,22 @@ public class ConsultaSolicitudControlador {
     @Autowired
     private SolicitudDaoImp solicitudDaoImp;
 
-    @GetMapping("/Vistas/ConsultaSolicitudes")
+    @GetMapping("ConsultaSolicitudes")
     public String  getCrearSolicitud( Model model)
     {
         List<Solicitud> lstSolicitudes =solicitudDaoImp.getsolicitudes();
        model.addAttribute("lstSolicitudes", lstSolicitudes);
         model.addAttribute("Titulo", "Lista de Solicitudes");
-        return "/Vistas/ConsultaSolicitudes";
+        return "ConsultaSolicitudes";
     }
 
-    @GetMapping("/Vistas/CrearSolicitud")
+    @GetMapping("CrearSolicitud")
     public String  crearEmpleado( Model model)
     {
        // Empleado e = new Empleado();
        // model.addAttribute("Empleado", e);
         model.addAttribute("Titulo", "Crear Nueva Solicitud");
-        return "/Vistas/CrearSolicitud";
+        return "CrearSolicitud";
     }
 
     @PostMapping("/guardar")
