@@ -1,15 +1,16 @@
 package com.Proyecto_Laboratorio.Laboratorio.Controlador;
 
 
-import com.Proyecto_Laboratorio.Laboratorio.Dao.SolicitudDaoImp;
-import com.Proyecto_Laboratorio.Laboratorio.Modelos.Solicitud;
+import com.Proyecto_Laboratorio.Laboratorio.Dao.*;
+import com.Proyecto_Laboratorio.Laboratorio.Modelos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-//import javax.validation.Valid;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -17,9 +18,17 @@ public class ConsultaSolicitudControlador {
 
     @Autowired
     private SolicitudDaoImp solicitudDaoImp;
+    @Autowired
+    private TipoSolicitudDaoImp tSolicitudImp;
+    @Autowired
+    private TipoSoporteDaoImp tSoporteImp;
+    @Autowired
+    private TipoSolicitanteDaoImp tSolicitanteImp;
+    @Autowired
+    private ExpedienteDaoImp ExpedienteImp;
 
     @GetMapping("ConsultaSolicitudes")
-    public String  getCrearSolicitud( Model model)
+    public String  getSolicitudes( Model model)
     {
         List<Solicitud> lstSolicitudes =solicitudDaoImp.getsolicitudes();
        model.addAttribute("lstSolicitudes", lstSolicitudes);
@@ -28,18 +37,41 @@ public class ConsultaSolicitudControlador {
     }
 
     @GetMapping("CrearSolicitud")
-    public String  crearEmpleado( Model model)
+    public String  crearSolicitud( Model model)
     {
-       // Empleado e = new Empleado();
-       // model.addAttribute("Empleado", e);
+        Solicitud e = new Solicitud();
+        model.addAttribute("Solicitud", e);
+        List<TipoSolicitud> lstTipoSolicitudes =tSolicitudImp.gettipoSolicitantes();
+        model.addAttribute("lstTipoSolicitudes", lstTipoSolicitudes);
+        List<TipoSolicitante> lstTipoSolicitantes =tSolicitanteImp.getSolicitantes();
+        model.addAttribute("lstTipoSolicitantes", lstTipoSolicitantes);
+       // List<TipoSoporte> lstTipoSoporte =tSoporteImp.getTipoSoportes();
+       // model.addAttribute("lstTipoSoporte", lstTipoSoporte);
         model.addAttribute("Titulo", "Crear Nueva Solicitud");
         return "CrearSolicitud";
     }
 
     @PostMapping("/guardar")
-    public String  guardarSolicitud( Model model)
+    public String  guardarSolicitud( @Valid Solicitud e, Model model)
     {
-        //EdaoImp.guardarEmpleado(e);
+        solicitudDaoImp.CrearSolicitud(e);
+
         return "redirect:/ConsultaSolicitudes";
+    }
+
+    @PostMapping("/buscar/{expediente}")
+    public String  buscarExpediente(@PathVariable String expediente, Model model)
+    {
+
+       // Solicitud e = new Solicitud();
+        //model.addAttribute("Solicitud", e);
+        List<TipoSolicitud> lstTipoSolicitudes =tSolicitudImp.gettipoSolicitantes();
+        model.addAttribute("lstTipoSolicitudes", lstTipoSolicitudes);
+        List<TipoSolicitante> lstTipoSolicitantes =tSolicitanteImp.getSolicitantes();
+        model.addAttribute("lstTipoSolicitantes", lstTipoSolicitantes);
+        // List<TipoSoporte> lstTipoSoporte =tSoporteImp.getTipoSoportes();
+        // model.addAttribute("lstTipoSoporte", lstTipoSoporte);
+        model.addAttribute("Titulo", "Crear Nueva Solicitud");
+        return "redirect:/CrearSolicitud";
     }
 }
