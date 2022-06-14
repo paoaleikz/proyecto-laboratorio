@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.validation.BindingResult;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -40,13 +40,14 @@ public class ConsultaSolicitudControlador {
     public String  crearSolicitud( Model model)
     {
         Solicitud e = new Solicitud();
+        e.setNoSolicitud(0);
         model.addAttribute("Solicitud", e);
         List<TipoSolicitud> lstTipoSolicitudes =tSolicitudImp.gettipoSolicitantes();
         model.addAttribute("lstTipoSolicitudes", lstTipoSolicitudes);
         List<TipoSolicitante> lstTipoSolicitantes =tSolicitanteImp.getSolicitantes();
         model.addAttribute("lstTipoSolicitantes", lstTipoSolicitantes);
-       // List<TipoSoporte> lstTipoSoporte =tSoporteImp.getTipoSoportes();
-       // model.addAttribute("lstTipoSoporte", lstTipoSoporte);
+         List<TipoSoporte> lstTipoSoporte =tSoporteImp.getTipoSoportes();
+         model.addAttribute("lstTipoSoporte", lstTipoSoporte);
         model.addAttribute("Titulo", "Crear Nueva Solicitud");
         return "CrearSolicitud";
     }

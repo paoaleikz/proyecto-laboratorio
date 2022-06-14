@@ -26,7 +26,7 @@ public class SolicitudDaoImp {
         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
 
         solicitud.setFechacreacion(dt1.format(date));
-
+        solicitud.setNoSolicitud(0);
         Solicitud sol = Sdao.save(solicitud);
 
         if(!sol.equals(null)){
